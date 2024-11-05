@@ -16,6 +16,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+     - name: Set up Node.js manually
+  run: |
+    Invoke-WebRequest -Uri https://nodejs.org/dist/v14.21.3/node-v14.21.3-win-x64.zip -OutFile node-v14.21.3-win-x64.zip
+    Expand-Archive -Path node-v14.21.3-win-x64.zip -DestinationPath $env:USERPROFILE\nodejs
+    $env:PATH += ";$env:USERPROFILE\nodejs\node-v14.21.3-win-x64"
 
       - name: Install dependencies
         run: npm install
